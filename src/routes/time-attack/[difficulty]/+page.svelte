@@ -24,7 +24,7 @@
   import Game from "./Game.svelte";
   import Summary from "./Summary.svelte";
 
-  import { highscore } from "./stores";
+  import { highscoreEasy, highscoreMedium, highscoreHard } from "./stores";
 
   interface previousFormInterface {
     sentence: (typeof api.sentences)[0];
@@ -48,8 +48,18 @@
 
   function endGame(game_guesses: previousFormInterface[], score: number) {
     previous_guesses = game_guesses;
-    $highscore = score > $highscore ? score : $highscore;
-    console.log($highscore, score);
+
+    if (data.difficulty == "easy")
+      $highscoreEasy = score > $highscoreEasy ? score : $highscoreEasy;
+    if (data.difficulty == "medium")
+      $highscoreMedium = score > $highscoreMedium ? score : $highscoreMedium;
+    if (data.difficulty == "hard")
+      $highscoreHard = score > $highscoreHard ? score : $highscoreHard;
+
+    console.log(
+      `Easy=${$highscoreEasy} Medium=${$highscoreMedium} Hard=${$highscoreHard}`,
+      score
+    );
     previous_score = score;
     state = PlayState.Summary;
   }
@@ -72,5 +82,10 @@
 {:else if state === PlayState.Playing}
   <Game {endGame} {startTime} {wrongTime} />
 {:else if state === PlayState.Summary}
-  <Summary {beginPlay} {previous_guesses} score={previous_score} />
+  <Summary
+    {beginPlay}
+    {previous_guesses}
+    score={previous_score}
+    difficulty={data.difficulty}
+  />
 {/if}

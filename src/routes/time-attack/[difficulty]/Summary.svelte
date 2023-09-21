@@ -1,10 +1,11 @@
 <script lang="ts">
   import type api from "$lib/translations.json";
-  import { highscore } from "./stores";
+  import { highscoreEasy, highscoreMedium, highscoreHard } from "./stores";
 
   export let beginPlay: Function;
   export let previous_guesses: previousFormInterface[];
   export let score: number;
+  export let difficulty: string;
 
   interface previousFormInterface {
     sentence: (typeof api.sentences)[0];
@@ -17,10 +18,16 @@
     code: keyof typeof api.languages;
     name: string;
   }
+
+  let highscore: number;
+  if (difficulty == "easy") highscore = $highscoreEasy;
+  else if (difficulty == "medium") highscore = $highscoreMedium;
+  else if (difficulty == "hard") highscore = $highscoreHard;
+  else highscore = 0;
 </script>
 
 <h1>Summary</h1>
-<h2>Highscore: <b>{$highscore}</b></h2>
+<h2>Highscore: <b>{highscore}</b></h2>
 <h2>Score: <b>{score}</b></h2>
 <button on:click={beginPlay()}>Play again</button>
 
