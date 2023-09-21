@@ -73,12 +73,33 @@
 </script>
 
 {#if state === PlayState.MainMenu}
-  <h1>You have {startTime} seconds to guess as many languages!</h1>
-  <button
-    on:click={() => {
-      state = PlayState.Playing;
-    }}>Play!</button
-  >
+  <div class="container">
+    <h1>You have {startTime} seconds to guess as many languages!</h1>
+    <button
+      on:click={() => {
+        state = PlayState.Playing;
+      }}
+    >
+      <span class="material-symbols-outlined"> play_arrow </span>
+    </button>
+  </div>
+
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    button {
+      width: fit-content;
+      background-color: white;
+      border-radius: 0.5rem;
+      width: calc(fit-content + 5rem);
+    }
+    button .material-symbols-outlined {
+      font-size: 5rem;
+    }
+  </style>
 {:else if state === PlayState.Playing}
   <Game {endGame} {startTime} {wrongTime} />
 {:else if state === PlayState.Summary}
