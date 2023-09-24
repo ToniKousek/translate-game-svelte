@@ -1,22 +1,36 @@
+<script lang="ts">
+  import { ColorModes, colorMode } from "./stores";
+  function onChangeMode() {
+    colorMode.toggle();
+  }
+</script>
+
 <nav>
-  <a href="/">
-    <div class="link-container">
-      <span class="material-symbols-outlined"> home </span>
-      <span class="icon-about">Home</span>
-    </div>
-  </a>
-  <a href="/game">
-    <div class="link-container">
-      <span class="material-symbols-outlined"> stadia_controller </span>
-      <span class="icon-about">Game</span>
-    </div>
-  </a>
-  <a href="/time-attack">
-    <div class="link-container">
-      <span class="material-symbols-outlined"> timer </span>
-      <span class="icon-about">Time attack</span>
-    </div>
-  </a>
+  <div class="nav-links">
+    <a href="/">
+      <div class="link-container">
+        <span class="material-symbols-outlined"> home </span>
+        <span class="icon-about">Home</span>
+      </div>
+    </a>
+    <a href="/game">
+      <div class="link-container">
+        <span class="material-symbols-outlined"> stadia_controller </span>
+        <span class="icon-about">Game</span>
+      </div>
+    </a>
+    <a href="/time-attack">
+      <div class="link-container">
+        <span class="material-symbols-outlined"> timer </span>
+        <span class="icon-about">Time attack</span>
+      </div>
+    </a>
+  </div>
+  <button class="switch-color-mode" on:click={onChangeMode}>
+    <span class="material-symbols-outlined">
+      {#if $colorMode === ColorModes.LightMode}dark_mode{:else}light_mode{/if}
+    </span>
+  </button>
 </nav>
 <hr />
 <main>
@@ -37,7 +51,12 @@
 <style>
   nav {
     display: flex;
+    flex-direction: row;
+  }
+  .nav-links {
+    display: flex;
     justify-content: space-evenly;
+    flex-grow: 1;
   }
 
   .link-container {

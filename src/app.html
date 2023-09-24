@@ -19,15 +19,56 @@
     %sveltekit.head%
 
     <style>
+      :root {
+        --primary-color: rgb(26, 138, 26);
+        --secondary-color: #536390;
+        --font-color: #424242;
+        --bg-color: #fff;
+        --secondary-bg-color: #ffbf00;
+        --heading-color: #292922;
+      }
+
+      [data-theme="dark"] {
+        --primary-color: #9a97f3;
+        --secondary-color: #818cab;
+        --font-color: #e1e1ff;
+        --bg-color: #161625;
+        --secondary-bg-color: #0f0f25;
+        --heading-color: #818cab;
+      }
+
       body {
         height: calc(100vh - 16px);
         font-family: "Roboto", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--font-color);
       }
+
       a {
-        color: black;
+        color: var(--font-color);
         text-decoration: none;
       }
+
+      button {
+        background-color: inherit;
+        color: inherit;
+        border-color: var(--primary-color);
+      }
+      h1,
+      h2 {
+        color: var(--heading-color);
+      }
+      h3 {
+        color: var(--secondary-color);
+      }
     </style>
+    <script defer>
+      // to load the mode after reload
+      if (localStorage.getItem("color-mode") == 0) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+      console.log(localStorage.getItem("color-mode"));
+    </script>
   </head>
   <body data-sveltekit-preload-data="hover">
     <div style="display: contents">%sveltekit.body%</div>

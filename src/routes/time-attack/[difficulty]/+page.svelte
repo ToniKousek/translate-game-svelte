@@ -80,7 +80,7 @@
         state = PlayState.Playing;
       }}
     >
-      <span class="material-symbols-outlined"> play_arrow </span>
+      <span class="material-symbols-outlined mso"> play_arrow </span>
     </button>
   </div>
 
@@ -92,11 +92,11 @@
     }
     button {
       width: fit-content;
-      background-color: white;
+      background-color: inherit;
       border-radius: 0.5rem;
       width: calc(fit-content + 5rem);
     }
-    button .material-symbols-outlined {
+    button .mso {
       font-size: 5rem;
     }
   </style>

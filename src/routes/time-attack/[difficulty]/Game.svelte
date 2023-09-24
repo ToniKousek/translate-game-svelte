@@ -184,10 +184,13 @@
     margin: 0 auto 1rem;
   }
   .popUp {
-    background-color: beige;
+    background-color: var(--secondary-bg-color);
     font-size: x-large;
     padding: 1rem;
     margin: 0 auto;
     border-radius: 2rem;
+  }
+  b {
+    color: var(--primary-color);
   }
 </style>
