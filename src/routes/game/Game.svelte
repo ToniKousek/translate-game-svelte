@@ -77,7 +77,7 @@
   }
 
   function gameOver() {
-    alert("You lost!");
+    // alert("You lost!");
     endGame(previousForm, score);
     lives = 3;
     score = 0;

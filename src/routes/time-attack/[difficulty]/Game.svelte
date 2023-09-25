@@ -78,7 +78,7 @@
   }
 
   function gameOver() {
-    alert("You lost!");
+    // alert("You lost!");
     endGame(previousForm, score);
     time = startTime;
     score = 0;
