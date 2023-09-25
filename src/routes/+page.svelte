@@ -3,7 +3,11 @@
 </svelte:head>
 
 <div class="container">
-  <h1>Lingo Detect</h1>
+  <header>
+    <img src="favicon.png" alt="The icon of the game" />
+    <h1>Lingo Detect</h1>
+  </header>
+
   <div class="main">
     <a class="link-container" href="/game">
       <div class="icon-container">
@@ -29,6 +33,11 @@
 </div>
 
 <style>
+  header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
   .container {
     display: flex;
     flex-direction: column;
@@ -82,5 +91,9 @@
 
   h1 {
     color: var(--heading-color);
+  }
+  img {
+    object-fit: contain;
+    height: 6rem;
   }
 </style>
