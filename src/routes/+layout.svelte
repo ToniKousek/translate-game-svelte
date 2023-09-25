@@ -89,7 +89,7 @@
     bottom: 0;
     width: 100%;
 
-    background-color: solid var(--background);
+    background-color: var(--background);
   }
 
   /*I don't like this, but whatever*/
