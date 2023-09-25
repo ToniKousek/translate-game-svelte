@@ -92,7 +92,7 @@
     }
     button {
       width: fit-content;
-      background-color: inherit;
+      background-color: var(--accent);
       border-radius: 0.5rem;
       width: calc(fit-content + 5rem);
     }

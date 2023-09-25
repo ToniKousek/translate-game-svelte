@@ -184,13 +184,13 @@
     margin: 0 auto 1rem;
   }
   .popUp {
-    background-color: var(--secondary-bg-color);
+    background-color: var(--secondary);
     font-size: x-large;
     padding: 1rem;
     margin: 0 auto;
     border-radius: 2rem;
   }
   b {
-    color: var(--primary-color);
+    color: var(--primary);
   }
 </style>

@@ -80,7 +80,7 @@
     justify-content: center;
   }
   .ad {
-    background-color: dimgray;
+    background-color: var(--secondary);
     padding: 1rem 5rem;
     border-radius: 1rem;
   }
@@ -89,7 +89,7 @@
     bottom: 0;
     width: 100%;
 
-    background-color: solid white;
+    background-color: solid var(--background);
   }
 
   /*I don't like this, but whatever*/

@@ -48,6 +48,9 @@
 </div>
 
 <style>
+  h1 {
+    color: var(--accent);
+  }
   .main-container {
     display: flex;
     align-items: center;
@@ -70,7 +73,7 @@
     justify-content: center;
     margin: 1rem;
     width: max-content;
-    border: 0.25rem outset var(--primary-color);
+    border: 0.25rem outset var(--primary);
   }
 
   .icon-about {

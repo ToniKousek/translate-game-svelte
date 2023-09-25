@@ -59,7 +59,7 @@
     justify-content: center;
     margin: 1rem;
     width: max-content;
-    border: 0.25rem outset var(--primary-color);
+    border: 0.25rem outset var(--primary);
   }
 
   .icon-about {
@@ -75,7 +75,7 @@
     display: block;
   }
   .icon-container:hover .material-symbols-outlined {
-    color: var(--secondary-color);
+    color: var(--primary);
   }
 
   .material-symbols-outlined {
@@ -90,7 +90,7 @@
   */
 
   h1 {
-    color: var(--heading-color);
+    color: var(--accent);
   }
   img {
     object-fit: contain;

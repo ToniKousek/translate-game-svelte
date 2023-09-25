@@ -20,32 +20,31 @@
 
     <style>
       :root {
-        --primary-color: rgb(26, 138, 26);
-        --secondary-color: #536390;
-        --font-color: #424242;
-        --bg-color: #fff;
-        --secondary-bg-color: #ffbf00;
-        --heading-color: #292922;
+        --text: #070808;
+        --background: #f4f5f5;
+        --primary: #0d7744;
+        --secondary: #ececdf;
+        --accent: #44976f;
       }
 
       [data-theme="dark"] {
-        --primary-color: #9a97f3;
-        --secondary-color: #818cab;
-        --font-color: #e1e1ff;
-        --bg-color: #161625;
-        --secondary-bg-color: #0f0f25;
-        --heading-color: #818cab;
+        --text: #f7f8f8;
+        --background: #161625;
+        --primary: #88f2be;
+        --secondary: #202013;
+        --accent: #68bb93;
       }
 
       body {
         height: calc(100vh - 16px);
         font-family: "Roboto", sans-serif;
-        background-color: var(--bg-color);
-        color: var(--font-color);
+        background-color: var(--background);
+        color: var(--text);
+        font-size: large;
       }
 
       a {
-        color: var(--font-color);
+        color: var(--text);
         text-decoration: none;
       }
 
