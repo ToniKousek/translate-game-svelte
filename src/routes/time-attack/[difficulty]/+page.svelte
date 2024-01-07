@@ -21,7 +21,7 @@
   }
 
   import type api from "$lib/translations.json";
-  import Game from "./Game.svelte";
+  import Game from "$lib/Game.svelte";
   import Summary from "./Summary.svelte";
 
   import { highscoreEasy, highscoreMedium, highscoreHard } from "./stores";
@@ -101,7 +101,7 @@
     }
   </style>
 {:else if state === PlayState.Playing}
-  <Game {endGame} {startTime} {wrongTime} />
+  <Game {endGame} {startTime} {wrongTime} timed />
 {:else if state === PlayState.Summary}
   <Summary
     {beginPlay}

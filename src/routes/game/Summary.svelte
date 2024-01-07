@@ -1,6 +1,6 @@
 <script lang="ts">
   import type api from "$lib/translations.json";
-  import { highscore } from "./stores";
+  import { highscore } from "../routes/game/stores";
 
   export let beginPlay: Function;
   export let previous_guesses: previousFormInterface[];

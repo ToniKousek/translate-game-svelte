@@ -7,6 +7,8 @@
     score: number
   ) => void;
 
+  export let timed = false;
+
   // creating interfaces
 
   interface languageInterface {
@@ -54,7 +56,12 @@
       ];
     } else {
       console.log("Not Correct!");
-      time -= wrongTime;
+
+      if (timed)
+        time -=
+          wrongTime ||
+          0; // if the start time is not provided, set it to zero, and it won't be checked
+      else lives--;
 
       previousForm = [
         ...previousForm,
@@ -67,7 +74,8 @@
       ];
     }
     console.log(previousForm);
-    newGame();
+    if (lives <= 0 && !timed) gameOver();
+    else newGame();
   }
 
   function newGame() {
@@ -80,13 +88,15 @@
   function gameOver() {
     // alert("You lost!");
     endGame(previousForm, score);
-    time = startTime;
+    if (timed) time = startTime || 0; // if the start time is not provided, set it to zero, and it won't be checked
+    timed && (lives = 3);
     score = 0;
     newGame();
   }
 
   // dynamic variables
 
+  let lives = 3;
   let score = 0;
 
   let current_sentence = api.sentences[0];
@@ -98,10 +108,10 @@
 
   // time functionality
 
-  export let startTime: number;
-  export let wrongTime: number;
+  export let startTime: number | undefined;
+  export let wrongTime: number | undefined;
 
-  let time = startTime;
+  let time = startTime || 0; // if the start time is not provided, set it to zero, and it won't be checked
 
   let timerId: number | null = null;
 
@@ -109,13 +119,17 @@
     timerId = setInterval(() => (time -= 1), 1000);
   }
 
-  $: !timerId && startGameTimer();
-  $: time <= 0 && gameOver();
+  $: !timerId && timed && startGameTimer();
+  $: time <= 0 && timed && gameOver();
 </script>
 
 <div id="root">
   <header>
-    <div>Time left: {time}</div>
+    {#if timed}
+      <div>Time left: {time}</div>
+    {:else}
+      <div>Lives: {lives}</div>
+    {/if}
     <div>Score: {score}</div>
   </header>
 

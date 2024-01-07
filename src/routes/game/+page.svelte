@@ -1,6 +1,6 @@
 <script lang="ts">
   import type api from "$lib/translations.json";
-  import Game from "./Game.svelte";
+  import Game from "$lib/Game.svelte";
   import Summary from "./Summary.svelte";
 
   import { highscore } from "./stores";
