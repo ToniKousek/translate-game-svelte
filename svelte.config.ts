@@ -1,10 +1,10 @@
 import { Config } from "@sveltejs/kit";
-import azure from "svelte-adapter-azure-swa";
+import adapter from "@sveltejs/adapter-node";
 import preprocess from "svelte-preprocess";
 
 const config: Config = {
   kit: {
-    adapter: azure(),
+    adapter: adapter(),
   },
 };
 export default config;
