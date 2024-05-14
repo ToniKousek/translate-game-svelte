@@ -1,30 +1,36 @@
 <script lang="ts">
   import type { PageData } from "./$types";
+  import { GameDifficulty, GameTypes } from "$lib/game_types";
 
   export let data: PageData;
 
   let startTime: number;
   let wrongTime: number;
+
   switch (data.difficulty) {
-    case "easy":
+    case GameDifficulty.Easy:
       startTime = 60;
       wrongTime = 5;
       break;
-    case "medium":
+    case GameDifficulty.Medium:
       startTime = 50;
       wrongTime = 7;
       break;
-    case "hard":
+    case GameDifficulty.Hard:
       startTime = 40;
       wrongTime = 10;
       break;
+    default:
+      error(500, "Game difficulty not found");
   }
+  if (data.difficulty === undefined) error(500, "Game difficulty not passed");
 
   import type api from "$lib/translations.json";
   import Game from "$lib/Game.svelte";
-  import Summary from "./Summary.svelte";
+  import Summary from "../../../lib/Summary.svelte";
 
-  import { highscoreEasy, highscoreMedium, highscoreHard } from "./stores";
+  import { highscore } from "$lib/highscore_store";
+  import { error } from "@sveltejs/kit";
 
   interface previousFormInterface {
     sentence: (typeof api.sentences)[0];
@@ -49,15 +55,26 @@
   function endGame(game_guesses: previousFormInterface[], score: number) {
     previous_guesses = game_guesses;
 
-    if (data.difficulty == "easy")
+    /*if (data.difficulty == GameDifficulty.Easy)
       $highscoreEasy = score > $highscoreEasy ? score : $highscoreEasy;
-    if (data.difficulty == "medium")
+    if (data.difficulty == GameDifficulty.Medium)
       $highscoreMedium = score > $highscoreMedium ? score : $highscoreMedium;
-    if (data.difficulty == "hard")
-      $highscoreHard = score > $highscoreHard ? score : $highscoreHard;
+    if (data.difficulty == GameDifficulty.Hard)
+      $highscoreHard = score > $highscoreHard ? score : $highscoreHard;*/
+
+    if (!data.difficulty) highscore.new(data, score);
 
     console.log(
-      `Easy=${$highscoreEasy} Medium=${$highscoreMedium} Hard=${$highscoreHard}`,
+      `Easy=${highscore.get({
+        type: GameTypes.TimeAttack,
+        difficulty: GameDifficulty.Easy,
+      })} Medium=${highscore.get({
+        type: GameTypes.TimeAttack,
+        difficulty: GameDifficulty.Medium,
+      })} Hard=${highscore.get({
+        type: GameTypes.TimeAttack,
+        difficulty: GameDifficulty.Hard,
+      })}`,
       score
     );
     previous_score = score;
@@ -107,6 +124,6 @@
     {beginPlay}
     {previous_guesses}
     score={previous_score}
-    difficulty={data.difficulty}
+    gameType={data}
   />
 {/if}

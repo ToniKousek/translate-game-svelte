@@ -108,8 +108,8 @@
 
   // time functionality
 
-  export let startTime: number | undefined;
-  export let wrongTime: number | undefined;
+  export let startTime: number | undefined = undefined;
+  export let wrongTime: number | undefined = undefined;
 
   let time = startTime || 0; // if the start time is not provided, set it to zero, and it won't be checked
 

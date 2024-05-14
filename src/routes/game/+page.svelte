@@ -1,9 +1,11 @@
 <script lang="ts">
   import type api from "$lib/translations.json";
   import Game from "$lib/Game.svelte";
-  import Summary from "./Summary.svelte";
+  import Summary from "$lib/Summary.svelte";
 
-  import { highscore } from "./stores";
+  //import { highscore } from "./stores";
+  import { highscore } from "$lib/highscore_store";
+  import { GameTypes, type GameType } from "$lib/game_types";
 
   interface previousFormInterface {
     sentence: (typeof api.sentences)[0];
@@ -25,10 +27,14 @@
   }
   let state: PlayState = PlayState.Playing;
 
+  const gameType: GameType = { type: GameTypes.Normal, difficulty: undefined };
+
   function endGame(game_guesses: previousFormInterface[], score: number) {
     previous_guesses = game_guesses;
-    $highscore = score > $highscore ? score : $highscore;
-    console.log($highscore, score);
+
+    if (score > highscore.get(gameType)) highscore.new(gameType, score);
+    console.log("Highscore is:");
+    console.log($highscore);
     previous_score = score;
     state = PlayState.Summary;
   }

@@ -1,10 +1,15 @@
 <script lang="ts">
   import type api from "$lib/translations.json";
-  import { highscore } from "../routes/game/stores";
+  import { highscore as highscoreStore } from "$lib/highscore_store";
+  import { GameTypes, type GameType } from "$lib/game_types";
 
   export let beginPlay: Function;
   export let previous_guesses: previousFormInterface[];
   export let score: number;
+  export let gameType: GameType = {
+    type: GameTypes.Normal,
+    difficulty: undefined,
+  };
 
   interface previousFormInterface {
     sentence: (typeof api.sentences)[0];
@@ -17,10 +22,18 @@
     code: keyof typeof api.languages;
     name: string;
   }
+
+  let highscore: number = highscoreStore.get(gameType);
+  console.log("Got highscore " + highscore);
+  /*
+  if (gameType.type == GameTypes.Normal) highscore = $highscoreEasy;
+  else if (difficulty == "medium") highscore = $highscoreMedium;
+  else if (difficulty == "hard") highscore = $highscoreHard;
+  else highscore = 0;*/
 </script>
 
 <h1>Summary</h1>
-<h2>Highscore: <b>{$highscore}</b></h2>
+<h2>Highscore: <b>{highscore}</b></h2>
 <h2>Score: <b>{score}</b></h2>
 
 <h2>Your guesses</h2>
@@ -32,10 +45,8 @@
   </p>
   <p>You guessed: {guess.userLanguage.name} {guess.wasSuccess ? "✅" : "❌"}</p>
 {/each}
-
 <br />
 <button on:click={beginPlay()}>Play again</button>
-
 <!-- The ad has some height so to counter is an empty div with height. Really bad hack -->
 <div style="height: 5em;" />
 

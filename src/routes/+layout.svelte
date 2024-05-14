@@ -1,5 +1,7 @@
 <script lang="ts">
   import { ColorModes, colorMode } from "./stores";
+  import { highscore } from "$lib/highscore_store";
+
   function onChangeMode() {
     colorMode.toggle();
   }
@@ -26,6 +28,11 @@
       </div>
     </a>
   </div>
+  <button
+    on:click={() => {
+      highscore.set([]);
+    }}
+  ></button>
   <button class="switch-color-mode" on:click={onChangeMode}>
     <span class="material-symbols-outlined">
       {#if $colorMode === ColorModes.LightMode}dark_mode{:else}light_mode{/if}
